@@ -1,0 +1,14 @@
+# .htaccess file in public_html/ - FINAL SOLUTION FOR SPA
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # إذا كان الطلب لا يشير إلى ملف حقيقي (مثل style.css)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  # وإذا كان الطلب لا يشير إلى مجلد حقيقي (مثل مجلد assets)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # قم بتوجيه جميع الروابط الداخلية (مثل /Home أو /About) إلى index.html
+  # ليقوم تطبيق Angular بمعالجة المسار
+  RewriteRule (.*) index.html [L]
+</IfModule>
